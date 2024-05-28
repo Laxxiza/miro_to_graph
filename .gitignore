@@ -1,0 +1,13 @@
+# Dependency directory
+node_modules
+data
+output
+
+# Optional npm cache directory
+.npm
+
+#env
+.env
+
+#vscode
+.vscode
