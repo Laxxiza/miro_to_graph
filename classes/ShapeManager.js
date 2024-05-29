@@ -20,19 +20,15 @@ class ShapeManager extends Manager {
     }
 
     findByGroupId(id) {
-        //return this.list.find(item => item.type === type);
-
         let includeTypes = ["condition", "goto", "instruction", "macros", "action", "finish", "only_send", "apply", "forward", "postpone", "restart"];
         return this.list.filter(item => includeTypes.includes(item.type) && item.groupId === id);
     }
 
     findByTypeAndGroupId(type, id) {
-        //return this.list.find(item => item.type === type);
         return this.list.filter(item => item.type === type && item.groupId === id);
     }
 
     findByTypesAndGroupId(types, id) {
-        //return this.list.find(item => item.type === type);
         return this.list.filter(item => types.includes(item.type) && item.groupId === id);
     }
 
@@ -43,14 +39,6 @@ class ShapeManager extends Manager {
     findIsNodeById(id) {
         return this.list.filter(item => item.id === id && item.isNode === true)?.shift();
     }
-
-    // removeShape(id) {
-    //     this.shapes = this.shapes.filter(shape => shape.id !== id);
-    // }
-
-    // findShapesByType(type) {
-    //     return this.shapes.filter(shape => shape.shapeType === type);
-    // }
 }
 
 module.exports = ShapeManager;

@@ -55,21 +55,11 @@ jsonStream
         console.log("- - - - - - - - - - - - - - - - - - - - - - -");
         console.log("JSONStream serialization complete!");
         console.log("- - - - - - - - - - - - - - - - - - - - - - -");
-        // console.log("Count: " + Object.keys(GROUPMAP).length);
-        // console.log("Shapes: " + shapes.length);
-        // console.log("Connectors: " + connectors.length);
-        // console.log("Groups: " + groups.length);
-        // console.log("Start: " + util.inspect(startNode));
-        // console.log(util.inspect(groups, false, null, true));
-        // console.log("- - - - - - - - - - - - - - - - - - - - - - -");
         console.log("- - - - - - - - - - Shapes - - - - - - - - - -");
-        //console.log(Shapes.all[Shapes.all.length - 1]);
         console.log(Shapes.all.length);
         console.log("- - - - - - - - - - Conns - - - - - - - - - -");
-        //console.log(Connectors.all[Connectors.all.length - 1]);
         console.log(Connectors.all.length);
         console.log("- - - - - - - - - - Group - - - - - - - - - -");
-        //console.log(Groups.all[Groups.all.length - 1]);
         console.log(Groups.all.length);
         console.log("- - - - - - - - - - Start - - - - - - - - - -");
         createNode();
@@ -179,60 +169,4 @@ function createNode(shape = Shapes.findByType("start"), toPoint) {
     if (groupShapes.length <= 1) {
         node.fillExample();
     }
-
-    //TODO УТОЧНИТЬ У КАКИХ ТИПОВ НУЖНО ДОБАВЛЯТЬ ЛИНЮЮ НОДУ ВЫКЛЮЧЕННУЮ ЕСЛИ ОНА ОДНА В ГРУППЕ
-
-
-    // let connectorIds = shape.connectorIds;
-
-    // node.shapeId = shapeId;
-    // node.type = type;
-    // node.title = type != "action" ? content : undefined;
-
-    // let indexOfPoint = 1;
-
-    // groupIds.forEach((id) => {
-    //     let groupShape = getShapeById(id);-
-    //     let groupFillColor = groupShape?.fillColor;-
-    //     let groupShapeType = COLORTYPES[groupFillColor];-
-    //     let groupShapeContent = groupShape?.content;-
-
-    //     if (groupShapeType == "description") {
-    //         node.description = groupShapeContent;
-    //         return false;
-    //     }
-
-    //     let groupConnectorIds = groupShape.connectorIds;
-    //     let nextShapeConnector = getConnectorById(groupConnectorIds[0]);
-    //     let nextShapeId = nextShapeConnector?.end;
-    //     let nextPoint = iterIndexPoint(indexPoint, true, indexOfPoint);
-
-    //     if (nextShapeId && !GROUPMAP.hasOwnProperty(nextShapeId)) {
-    //         indexOfPoint++;
-    //         start(getShapeById(nextShapeId), nextPoint);
-    //     }
-
-    //     nextPoint = GROUPMAP[nextShapeId];
-    //     node.actions.push({
-    //         //shapeId: id,
-    //         type: groupShapeType,
-    //         ...(groupShapeType == "instruction"
-    //             ? { title: content, description: groupShapeContent }
-    //             : { title: groupShapeContent }),
-    //         ...(groupShapeType == "macros"
-    //             ? {
-    //                   to_id: nextPoint || "2",
-    //                   value: macrosEnable
-    //                       ? groupShapeContent.match(/macro_var_\w*/gi)[0]
-    //                       : "",
-    //               }
-    //             : { to_id: nextPoint || "2" }),
-    //     });
-    // });
 }
-
-//* Если action в ноде ВСЕГО ОДИН, то создать дополнительный action c тем, что он должен быть помечен как is_disabled: true
-//* Если бордерколор RED - is_disabled: true
-//* Если текст в [квадратных скобках] значит это - discription - ГОТОВО
-//* Текст обрамленный -Тире- ивырезать и игнорировать - ГОТОВО
-//* За основу брать текст в *Звездочках* - ГОТОВО
