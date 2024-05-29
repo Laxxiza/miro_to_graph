@@ -71,6 +71,7 @@ class Node {
                 "Выполнить": "apply",
                 "В другую линию": "forward",
                 "Отложить": "postpone",
+                "В ожидание": "pending"
             };
             Object.keys(texts).forEach(key => {
                 this.actions.push({ 

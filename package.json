@@ -4,7 +4,7 @@
   "description": "Скрипт для автоматического создания графа формата json",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js --path-file data2.json --entry-point 1 --macros-enable true -f false"
+    "start": "node index.js --path-file data.json --entry-point 1 --macros-enable true -f false"
   },
   "author": "Laxxiza",
   "license": "ISC",

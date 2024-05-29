@@ -95,8 +95,8 @@ jsonStream
 
         fs.writeFile(
             outputPath.includes(".json")
-                ? "output/nodes" + outputPath
-                : "output/nodes.json",
+                ? outputPath
+                : ".json",
             JSON.stringify(
                 { entrypoint: entryPoint, nodes: Nodes.getJson() },
                 null,
@@ -127,7 +127,9 @@ function createNode(shape = Shapes.findByType("start"), toPoint) {
     if (fakeFinish || (Nodes.findToIdById(2).length > 0 && !Nodes.findById(2))) { //fakeFinish && !Nodes.findByType("finish")
         console.log("Добавлен фейк-финиш".blue);
         fakeFinish = false;
-        Nodes.add( new Node({ nodeId: 2, type: "finish" }) );
+        let finishNode = new Node({ nodeId: 2, type: "finish" });
+        finishNode.fillExample();
+        Nodes.add( finishNode );
     }
 
     if (!shape.groupId) {
