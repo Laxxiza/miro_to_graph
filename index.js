@@ -50,8 +50,6 @@ jsonStream
         Shapes.sort();
     })
     .on("end", () => {
-        //start();
-        console.log(macrosEnable);
         console.log("- - - - - - - - - - - - - - - - - - - - - - -");
         console.log("JSONStream serialization complete!");
         console.log("- - - - - - - - - - - - - - - - - - - - - - -");
@@ -66,12 +64,29 @@ jsonStream
         console.log("- - - - - - - - - - Stop - - - - - - - - - -");
         console.log("- - - - - - - - - - Nodes - - - - - - - - - -");
         console.log(Nodes.all.length);
+        // fs.writeFile(
+        //     outputPath.includes(".json")
+        //         ? "output/test-" + outputPath
+        //         : outputPath + "output/test.json",
+        //     JSON.stringify(
+        //         { entrypoint: entryPoint, nodes: Shapes.all },
+        //         null,
+        //         4
+        //     ),
+        //     (err) => {
+        //         if (err) console.log(err);
+        //         else {
+        //             console.log(`Файл уcпешно сохранен с именем ${outputPath}`);
+        //         }
+        //     }
+        // );
+
         fs.writeFile(
             outputPath.includes(".json")
-                ? "output/test-" + outputPath
-                : outputPath + "output/test.json",
+                ? outputPath
+                : outputPath + ".json",
             JSON.stringify(
-                { entrypoint: entryPoint, nodes: Shapes.all },
+                { entrypoint: entryPoint, nodes: Nodes.getJson() },
                 null,
                 4
             ),
@@ -82,23 +97,7 @@ jsonStream
                 }
             }
         );
-
-        fs.writeFile(
-            outputPath.includes(".json")
-                ? outputPath
-                : ".json",
-            JSON.stringify(
-                { entrypoint: entryPoint, nodes: Nodes.getJson() },
-                null,
-                4
-            ),
-            (err) => {
-                if (err) console.log(err);
-                else {
-                    console.log(`Файл уcпешно сохранен с именем nodes`);
-                }
-            }
-        );
+        console.log("- - - - - - - - - - - - - - - - - - - - - - -");
     });
 
 let tempIter = 1;

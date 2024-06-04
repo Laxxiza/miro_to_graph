@@ -32,7 +32,8 @@ class Shape {
             const lastOccurrence = fullText.lastIndexOf(match);
             return offset === lastOccurrence ? '' : "\n";
         });
-        content = REGEX.extra.exec(content)?.shift() || (this.type === "macros" ? content.replace(REGEX.macros, "") : content);
+        //content = REGEX.extra.exec(content)?.shift() || (this.type === "macros" ? content.replace(REGEX.macros, "") : content); Подставляем текст если не нашли текст в звездочках
+        content = REGEX.extra.exec(content)?.shift() || (this.type === "macros" ? (content.replace(REGEX.macros, ""), undefined) : content);
         content = content?.replace(REGEX.htmlTags, "");
 
         return content;
