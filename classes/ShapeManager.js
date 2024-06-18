@@ -5,6 +5,10 @@ class ShapeManager extends Manager {
         if ((item.groupId || item.type == 'finish' || item.type == 'start') && !this.findById(item.id)) {
             this.list.push(item);
         }
+        else if(!item.groupId || item.type != "shape"){
+            console.log(item);
+            throw Error(`Нода БЕЗ ГРУППЫ или НЕПРАВИЛЬНЫЙ ТИП НОДЫ, исправь перед загрузкой`);
+        }
     }
 
     findByNodeId(id) {
