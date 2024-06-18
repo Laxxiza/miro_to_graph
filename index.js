@@ -100,18 +100,18 @@ jsonStream
         console.log("- - - - - - - - - - - - - - - - - - - - - - -");
     });
 
-let tempIter = 1;
+// let tempIter = 1;
 
 function createNode(shape = Shapes.findByType("start"), toPoint) {
     console.log("- - - - - - - - - - - - - - - - - - - -");
     console.log("Итерация: " + tempIter, "След. нода " + toPoint);
     console.log("Тип ноды: " + shape.type, "ID ноды: " + shape.id);
 
-    if (tempIter > 200) {
-        console.log("Превышен лимит цикла");
-        return false;
-    }
-    tempIter++;
+    // if (tempIter > 500) {
+    //     console.log("Превышен лимит цикла");
+    //     return false;
+    // }
+    // tempIter++;
 
     if (fakeFinish || (Nodes.findToIdById(2).length > 0 && !Nodes.findById(2))) { //fakeFinish && !Nodes.findByType("finish")
         console.log("Добавлен фейк-финиш".blue);
