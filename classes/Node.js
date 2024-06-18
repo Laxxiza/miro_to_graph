@@ -18,7 +18,7 @@ class Node {
 
         action.type = groupShape.type;
         action.to_id = point || "2";
-        action.title = groupShape?.content;
+        action.title = groupShape?.content || "";
 
         if (groupShape.type == "instruction") {
             // action = {
@@ -26,7 +26,7 @@ class Node {
             //     title: shape?.content,
             //     description: groupShape?.content,
             // };
-            action.title = shape?.content;
+            action.title = shape?.content || "";
             action.description = groupShape?.content;
         }
 
@@ -36,7 +36,7 @@ class Node {
             //     title: groupShape?.content,
             //     value: macrosEnable ? groupShape?.macros : "",
             // };
-            action.value = macrosEnable ? groupShape?.macros : "";
+            action.value = macrosEnable ? groupShape?.macros || "" : "";
         }
 
         if (["only_send", "apply", "forward", "postpone"].includes(groupShape.type)) {
@@ -79,7 +79,7 @@ class Node {
                     title: key
                  });
             });
-            console.log("fillExample Для Finish");
+            //console.log("fillExample Для Finish");
         }
 
         if (this.type == "condition") {
@@ -89,7 +89,7 @@ class Node {
                 title: "PlaceHolder",
                 is_disabled: true
             });
-            console.log("fillExample Для Condition");
+            //console.log("fillExample Для Condition");
         }
     }
 }
