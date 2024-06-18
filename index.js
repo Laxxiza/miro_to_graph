@@ -9,6 +9,7 @@ let {
     macrosEnable,
     outputPath,
     fakeFinish,
+    defects
 } = require("./options");
 
 const jsonStream = fs.createReadStream(pathFile);
@@ -53,17 +54,20 @@ jsonStream
         console.log("- - - - - - - - - - - - - - - - - - - - - - -");
         console.log("JSONStream serialization complete!");
         console.log("- - - - - - - - - - - - - - - - - - - - - - -");
-        console.log("- - - - - - - - - - Shapes - - - - - - - - - -");
-        console.log(Shapes.all.length);
-        console.log("- - - - - - - - - - Conns - - - - - - - - - -");
-        console.log(Connectors.all.length);
-        console.log("- - - - - - - - - - Group - - - - - - - - - -");
-        console.log(Groups.all.length);
+        console.log(`- - - - - - - - - - Shapes: ${Shapes.all.length} - - - - - - - - - -`);
+        console.log(`- - - - - - - - - - Conns: ${Connectors.all.length} - - - - - - - - - -`);
+        console.log(`- - - - - - - - - - Groups: ${Groups.all.length} - - - - - - - - - -`);
         console.log("- - - - - - - - - - Start - - - - - - - - - -");
         createNode();
         console.log("- - - - - - - - - - Stop - - - - - - - - - -");
-        console.log("- - - - - - - - - - Nodes - - - - - - - - - -");
-        console.log(Nodes.all.length);
+        console.log(`- - - - - - - - - - Nodes: ${Nodes.all.length} - - - - - - - - - -`);
+        console.log(`- - - - - - - - - - Дефектные ноды: ${Shapes.allDefect.length} - - - - - - - - - -`);
+
+        if(Shapes.allDefect.length > 0){
+            console.log(Shapes.allDefect);
+            console.log("Сохранение прервано!\nПоправь дефекты и попробуй снова");
+            if(defects) return false;
+        }
         // fs.writeFile(
         //     outputPath.includes(".json")
         //         ? "output/test-" + outputPath
@@ -100,18 +104,18 @@ jsonStream
         console.log("- - - - - - - - - - - - - - - - - - - - - - -");
     });
 
-// let tempIter = 1;
+let tempIter = 1;
 
 function createNode(shape = Shapes.findByType("start"), toPoint) {
-    console.log("- - - - - - - - - - - - - - - - - - - -");
-    console.log("Итерация: " + tempIter, "След. нода " + toPoint);
-    console.log("Тип ноды: " + shape.type, "ID ноды: " + shape.id);
+    // console.log("- - - - - - - - - - - - - - - - - - - -");
+    // console.log("Итерация: " + tempIter, "След. нода " + toPoint);
+    // console.log("Тип ноды: " + shape.type, "ID ноды: " + shape.id);
 
     // if (tempIter > 500) {
     //     console.log("Превышен лимит цикла");
     //     return false;
     // }
-    // tempIter++;
+    tempIter++;
 
     if (fakeFinish || (Nodes.findToIdById(2).length > 0 && !Nodes.findById(2))) { //fakeFinish && !Nodes.findByType("finish")
         console.log("Добавлен фейк-финиш".blue);
@@ -141,7 +145,7 @@ function createNode(shape = Shapes.findByType("start"), toPoint) {
 
     //node.shapeId = shape?.id;
     node.id = toPoint || ENTRYPOINT;
-    console.log("Присвое NodeID: " + node.id);
+    //console.log("Присвое NodeID: " + node.id);
     shape.nodeId = node.id;
     node.description = descriptionShape?.content || undefined;
 

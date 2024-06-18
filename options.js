@@ -37,6 +37,12 @@ program
         parseBool,
         false
     )
+    .option(
+        "-d, --defects <true/false>",
+        "Выводить в консоль дефектрые ноды?",
+        parseBool,
+        false
+    )
     .parse();
 
 module.exports = program.opts();

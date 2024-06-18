@@ -1,15 +1,26 @@
 class Manager {
     constructor() {
         this.list = [];
+        this.defectList = [];
     }
 
     get all() {
         return this.list;
     }
 
+    get allDefect() {
+        return this.defectList;
+    }
+
     add(item) {
         if (!this.findById(item.id) && item.type) {
             this.list.push(item);
+        }
+    }
+
+    addDefect(item) {
+        if (item.type) {
+            this.defectList.push(item);
         }
     }
 
