@@ -164,7 +164,7 @@ function createNode(shape = Shapes.findByType("start"), toPoint) {
 
         nextShapePoint = nextShape?.nodeId;
 
-        let params = { shape: shape,  groupShape: gShape, point: nextShapePoint, macrosEnable };
+        let params = { shape: shape, groupShape: gShape, point: nextShapePoint, macrosEnable };
 
         node.addAction(params);
     });

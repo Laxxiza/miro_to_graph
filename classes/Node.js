@@ -9,7 +9,7 @@ class Node {
     constructor(data) {
         this.id = data?.nodeId;
         this.type = data?.type;
-        this.title = data?.type !== "action" ? data?.content : undefined;
+        this.title = data?.type !== "action" ? data?.title : undefined;
         this.description = data?.description;
     }
 
@@ -18,7 +18,8 @@ class Node {
 
         action.type = groupShape.type;
         action.to_id = point || "2";
-        action.title = groupShape?.content || "";
+        action.title = groupShape?.title || "";
+        action.description = groupShape?.description;
 
         if (groupShape.type == "instruction") {
             // action = {
@@ -26,8 +27,8 @@ class Node {
             //     title: shape?.content,
             //     description: groupShape?.content,
             // };
-            action.title = shape?.content || "";
-            action.description = groupShape?.content;
+            action.title = shape?.title || "";
+            action.description = groupShape?.description;
         }
 
         if (groupShape.type == "macros") {
