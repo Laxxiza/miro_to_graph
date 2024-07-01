@@ -51,23 +51,25 @@ jsonStream
         Shapes.sort();
     })
     .on("end", () => {
+        Shapes.checkDefect(Connectors.all);
         console.log("- - - - - - - - - - - - - - - - - - - - - - -");
         console.log("JSONStream serialization complete!");
         console.log("- - - - - - - - - - - - - - - - - - - - - - -");
         console.log(`- - - - - - - - - - Shapes: ${Shapes.all.length} - - - - - - - - - -`);
         console.log(`- - - - - - - - - - Conns: ${Connectors.all.length} - - - - - - - - - -`);
         console.log(`- - - - - - - - - - Groups: ${Groups.all.length} - - - - - - - - - -`);
-        console.log("- - - - - - - - - - Start - - - - - - - - - -");
-        createNode();
-        console.log("- - - - - - - - - - Stop - - - - - - - - - -");
-        console.log(`- - - - - - - - - - Nodes: ${Nodes.all.length} - - - - - - - - - -`);
-        console.log(`- - - - - - - - - - Дефектные ноды: ${Shapes.allDefect.length} - - - - - - - - - -`);
-
+        console.log(`- - - - - - - - - - Дефектные шейпы: ${Shapes.allDefect.length} - - - - - - - - - -`);
         if(Shapes.allDefect.length > 0){
             console.log(Shapes.allDefect);
             console.log("Сохранение прервано!\nПоправь дефекты и попробуй снова");
             if(defects) return false;
         }
+        console.log("- - - - - - - - - - Start - - - - - - - - - -");
+        createNode();
+        console.log("- - - - - - - - - - Stop - - - - - - - - - -");
+        console.log(`- - - - - - - - - - Nodes: ${Nodes.all.length} - - - - - - - - - -`);
+
+        
         // fs.writeFile(
         //     outputPath.includes(".json")
         //         ? "output/test-" + outputPath
