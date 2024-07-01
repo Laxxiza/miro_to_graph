@@ -5,15 +5,6 @@ class ShapeManager extends Manager {
         if ((item.groupId || item.type == "finish" || item.type == "start") && !this.findById(item.id)) {
             this.list.push(item);
         }
-        // else if(!item.groupId || item.shapeType != "shape"){
-        //     //console.log(item);
-        //     this.addDefect(item);
-        //     //throw Error(`Нода БЕЗ ГРУППЫ или НЕПРАВИЛЬНЫЙ ТИП НОДЫ, исправь перед загрузкой`);
-        // }
-
-        // if(["goto","instruction","macros","start"].includes(item.type) && item.connectorIds){
-
-        // }
     }
 
     checkDefect(conns) {
