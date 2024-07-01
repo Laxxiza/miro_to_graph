@@ -7,7 +7,7 @@ class Shape {
         this.content = this.clearContent(data.content);
         Object.assign(this, this.clearContent(data.content));
         this.shapeType = data.type;
-        this.isDisabled = data.style.borderColor == "#f24726" ? true : false;
+        this.isDisabled = false; //data.style.borderColor == "#f24726" ? true : false;
         this.connectorIds = data.connectorIds;
         this.groupId = data.groupId;
         this.isNode = false;
@@ -16,8 +16,8 @@ class Shape {
     clearContent(content) {
         let REGEX = {
             htmlTags: /<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/gi,
-            extra: /(?<=\*).*(?=\*)/gi,
-            amper: /(?<=\&).*(?=\&)/gi,
+            extra: /(?<=\*)[\s\S]*?.*(?=\*)/gi,
+            amper: /(?<=\&)[\s\S]*?.*(?=\&)/gi,
             pTag: /<\/p>/gi,
             macros: /macro_var_\w+/gi
         };
@@ -32,7 +32,10 @@ class Shape {
         });
         //content = REGEX.extra.exec(content)?.shift() || (this.type === "macros" ? content.replace(REGEX.macros, "") : content); Подставляем текст если не нашли текст в звездочках
         content = content?.replace(REGEX.htmlTags, "");
+        
         let title = REGEX.extra.exec(content)?.shift() || (this.type === "macros" ? (content?.replace(REGEX.macros, ""), undefined) : content);
+        title = title.replace(REGEX.amper, "");
+
         let description = REGEX.amper.exec(content)?.shift();
         let macros = REGEX.macros.exec(content)?.shift() || undefined;
 
