@@ -149,7 +149,8 @@ function createNode(shape = Shapes.findByType("start"), toPoint) {
     node.id = toPoint || ENTRYPOINT;
     //console.log("Присвое NodeID: " + node.id);
     shape.nodeId = node.id;
-    node.description = descriptionShape?.content || undefined;
+    console.log(descriptionShape)
+    node.description = descriptionShape?.content.title || undefined;
 
     let groupShapes = Shapes.findByGroupId(shape.groupId).filter((gShape) => gShape.id !== shape.id);
 
