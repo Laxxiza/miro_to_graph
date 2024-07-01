@@ -9,7 +9,7 @@ class Manager {
     }
 
     get allDefect() {
-        return this.defectList;
+        return this.defectList.map((el) => { return {id: el.id, content: el.content, defect: el.defectDesc} });
     }
 
     add(item) {
@@ -18,8 +18,9 @@ class Manager {
         }
     }
 
-    addDefect(item) {
+    addDefect(item, info="") {
         if (item.type) {
+            item.defectDesc = info;
             this.defectList.push(item);
         }
     }
