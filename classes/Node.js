@@ -28,7 +28,8 @@ class Node {
             //     description: groupShape?.content,
             // };
             action.title = shape?.title || "";
-            action.description = groupShape?.description;
+            action.description = groupShape?.title;
+            console.log(groupShape);
         }
 
         if (groupShape.type == "macros") {
