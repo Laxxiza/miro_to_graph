@@ -34,7 +34,7 @@ class Shape {
         content = content?.replace(REGEX.htmlTags, "");
         
         let title = REGEX.extra.exec(content)?.shift() || (this.type === "macros" ? (content?.replace(REGEX.macros, ""), undefined) : content);
-        title = title.replace(REGEX.amper, "").replaceAll("&", "");
+        title = title?.replace(REGEX.amper, "").replaceAll("&", "");
 
         let description = REGEX.amper.exec(content)?.shift();
         let macros = REGEX.macros.exec(content)?.shift() || undefined;
