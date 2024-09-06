@@ -134,7 +134,7 @@ function createNode(shape = Shapes.findByType("start"), toPoint) {
 
         let connector = Connectors.findById(shape.connectorIds[0]);
         shape.isNode = true;
-        console.log("БЕЗ ГРУППЫ", shape.id);
+        console.log("БЕЗ ГРУППЫ", shape.id, toPoint || 0);
         createNode(Shapes.findById(connector.end));
         return false;
     }
