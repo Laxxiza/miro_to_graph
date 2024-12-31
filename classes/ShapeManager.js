@@ -23,6 +23,26 @@ class ShapeManager extends Manager {
                         let res = connectors?.reduce((acc, curr, index, arr) => {
                             let conn = conns.find((x) => x.id == curr);
     
+                            if (conn?.end == item?.id) {
+                                acc += 1;
+                            }
+    
+                            return acc;
+                        }, 0);
+    
+                        if(res > 0) {
+                            this.addDefect(item, `Коннектор не может быть у: goto/instruction/macros/start. Текущая нода явялется ${item.type} типом`);
+                        }
+                    }
+                }
+
+                if (["goto", "instruction", "macros", "start"].includes(item.type)) {
+                    let connectors = item?.connectorIds;
+    
+                    if (connectors.length > 0) {
+                        let res = connectors?.reduce((acc, curr, index, arr) => {
+                            let conn = conns.find((x) => x.id == curr);
+    
                             if (conn?.start == item?.id) {
                                 acc += 1;
                             }
