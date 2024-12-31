@@ -63,7 +63,7 @@ class ShapeManager extends Manager {
                         let res = connectors?.reduce((acc, curr, index, arr) => {
                             let conn = conns.find((x) => x.id == curr);
     
-                            if (conn?.end == item?.id) {
+                            if (conn?.end == item?.id || conn?.start == item?.id) {
                                 acc += 1;
                             }
     
@@ -71,7 +71,7 @@ class ShapeManager extends Manager {
                         }, 0);
     
                         if(res == 0) {
-                            this.addDefect(item, "Нет стратового коннектора");
+                            this.addDefect(item, "Нет или не может быть Стартовго/Конечного коннектора");
                         }
                     }
                 }
